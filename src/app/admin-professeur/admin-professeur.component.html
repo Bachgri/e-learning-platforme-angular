@@ -1,0 +1,81 @@
+<router-outlet></router-outlet>
+<app-sidebar></app-sidebar>
+<div class="body0" id="body0" style="margin-left: 6em;">
+
+    <div class="container">
+        <div class="sous-container">
+            <div class="search-container">
+                <div>
+                    <input type="text" name="" placeholder="Search" id="" class="form-control" [(ngModel)]="searchText">
+                </div>
+            </div>
+            <!-- {{add | json}} -->
+            <div class="table-container">
+                <div class="table">
+                    <!-- {{profs | json}} -->
+                    <table class="table table-hover hover">
+                        <thead>
+                            <tr>
+                                <th>name</th>
+                                <th>email</th>
+                                <!-- <th>nombre de cours</th> -->
+                                <th>
+                                    <button *ngIf="!addMode" (click)="addMode=!addMode" class="btn btn-success"
+                                        type="button" title="delete"><span class="fa fa-plus"></span></button>
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngIf="addMode">
+                                <td>
+                                    <input type="text" name="fullName" placeholder="nom" [(ngModel)]="add.fullName"
+                                        id="name" class="name">
+                                </td>
+                                <td>
+                                    <input type="text" name="email" placeholder="email" [(ngModel)]="add.email"
+                                        id="email" class="name">
+                                </td>
+                                <td>
+                                    <input type="password" name="password" placeholder="password"
+                                        [(ngModel)]="add.password" id="name" class="name">
+                                </td>
+                                <td>
+                                    <button class="btn btn-success" (click)="addProf(add)" type="button"
+                                        title="delete"><span class="fa fa-check"></span></button>
+                                </td>
+                                <td>
+                                    <button class="btn btn-danger" (click)="addMode=!addMode" type="button"
+                                        title="delete"><span class="fa fa-">X</span></button>
+                                </td>
+                            </tr>
+                            <tr *ngFor="let p of getProfs">
+                                <td>
+                                    <p *ngIf="!p.editMode">{{p.fullName}}</p>
+                                    <input *ngIf="p.editMode" type="text" name="" placeholder="name"
+                                        value="{{p.fullName}}" id="nametr" class="name">
+                                </td>
+                                <td>
+                                    <p *ngIf="!p.editMode">{{p.email}}</p>
+                                    <input *ngIf="p.editMode" type="text" name="" placeholder="name" value="{{p.email}}"
+                                        id="nametr" class="name">
+                                </td>
+                                <!-- <td>
+                                         {{p.cours.length}} 
+                                </td> -->
+                                <td> <button *ngIf="!p.editMode" (click)="p.editMode=!p.editMode"
+                                        class="btn btn-success" type="button" title="delete"><span
+                                            class="fa fa-pencil"></span></button>
+                                    <button *ngIf="p.editMode" (click)="p.editMode=!p.editMode" class="btn btn-success"
+                                        type="button" title="delete"><span class="fa fa-check"></span></button>
+                                </td>
+                                <td> <button class="btn btn-danger" type="button" title="delete"><span
+                                            class="fa fa-trash"></span></button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

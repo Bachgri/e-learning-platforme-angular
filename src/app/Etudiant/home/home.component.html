@@ -1,0 +1,7 @@
+<app-sidebar></app-sidebar>
+
+<div class="bod" [ngClass]="getBodyClass()">
+
+    <app-courses *ngIf="label==1"></app-courses>
+    <app-my-courses *ngIf="label==2"></app-my-courses>
+</div>

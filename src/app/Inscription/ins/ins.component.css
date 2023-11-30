@@ -1,0 +1,48 @@
+
+
+
+
+
+button{
+    width: 100%;
+    outline: none;
+    border: none;
+    font-size: medium;
+    border-radius: 2px;
+    
+    color: white;
+    text-align: center;
+    height: 40px;
+    font-family: 'Courier New', Courier, monospace;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+
+
+
+.form-outline{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
+    align-items: center;
+}
+
+.error{
+    font-size: smaller;
+    color: red;
+    
+    width: 200px;
+    word-wrap: break-word;
+    text-align: center;
+    height: 30px;
+}
+
+
+    @media (max-width:300px) {
+        label, input, button{
+            font-size: small;
+        }
+      
+        
+    }

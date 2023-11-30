@@ -1,0 +1,35 @@
+<div class="container">
+    <div class>
+        <h2 class="text-center pt-2">ALL COURSES</h2>
+        <div class>
+            <table class="table pt-4">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Image</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Profession</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Loop through your courseList and display each item in a row -->
+                    <tr *ngFor="let course of courseList; let i = index">
+                        <th scope="row">{{ course.id }}</th>
+                        <td><img [src]="course.image" alt="{{ course.name }}" class="img-thumbnail" width="50"
+                                height="50"></td>
+                        <td><a href="/Etudiant/Course/{{course.id}}">{{
+                                course.name
+                                }}</a></td>
+                        <td>{{ course.professor.fullName }}</td>
+                        <td>
+                            <button class="btn btn-primary" (click)="addIt(course.id)">Suivre {{course.id}} </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- {{courseList | json}} -->
+        </div>
+    </div>
+
+</div>

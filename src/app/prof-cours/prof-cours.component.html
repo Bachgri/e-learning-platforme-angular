@@ -1,0 +1,209 @@
+<!-- <router-outlet></router-outlet> -->
+<!-- <app-sidenav (onToggleSideNav)="onToggleSideNav($event)"></app-sidenav> -->
+<app-sidebar></app-sidebar>
+
+<div class="body0" id="body0" style="margin-left: 6em;">
+
+    <div class="container">
+        <div class="sous-container">
+            <div class="search-container">
+                <div class="btn-group form-control" role="group" aria-label="Search and Add Buttons">
+                    <input type="text" name="" placeholder="Search" id="" class="form-control"
+                        [(ngModel)]="searchText" />
+                    <button title="search" class="btn btn-default fa fa-search"> </button>
+                    <button title="add" class="btn btn-success" type="button" data-toggle="modal"
+                        data-target="#exampleModal">+</button>
+                </div>
+            </div>
+            <div class="table-container">
+                <div class="table">
+                    <!-- {{profs | json}} -->
+                    <table class="table table-hover hover">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>name</th>
+                                <th>description</th>
+                                <th>Chapitres</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr *ngFor="let p of cours" [class.valider]="!p.valider">
+                                <td>
+                                    <img src="{{p.image}}" height="87" width="200" alt="">
+                                </td>
+                                <td style="    line-height: 7;">
+                                    <p>{{p.name}}</p>
+
+                                </td>
+                                <td style="    line-height: 7;">
+                                    <p *ngIf="!p.editMode">{{p.description}}</p>
+                                    <input *ngIf="p.editMode" type="text" name="description" placeholder="description"
+                                        value="{{p.description}}" id="description" class="description">
+                                </td>
+                                <td style="    line-height: 7;">
+                                    <p *ngIf="!p.editMode">{{p.chapters.length}}</p>
+                                </td>
+                                <td style="    line-height: 7;">
+                                    <button title="edit" type="button" class="btn btn-primary fa fa-pencil"
+                                        type="button" data-toggle="modal" data-target="#addcModal"
+                                        (click)="edited=p"></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Your form fields go here -->
+                <!-- Your form fields go here -->
+                <!-- Your form fields go here -->
+                <div class="form-group">
+                    <label for="itemImage">Image:</label>
+                    <input type="text" name="image" [(ngModel)]="newItem.image" id="itemImage" placeholder="Image URL"
+                        class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="itemName">Name:</label>
+                    <input type="text" name="name" [(ngModel)]="newItem.name" id="itemName" placeholder="Name"
+                        class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="itemDescription">Description:</label>
+                    <input type="text" name="description" [(ngModel)]="newItem.description" id="itemDescription"
+                        placeholder="Description" class="form-control">
+                </div>
+
+                <!-- Add more fields as needed -->
+                <!-- Add more fields as needed -->
+                <!-- Add more fields as needed -->
+                <!-- {{newItem | json}} -->
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" (click)="saveCourse()">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="addcModal" tabindex="-1" role="dialog" aria-labelledby="addcModalLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Your form fields go here -->
+                <!-- Your form fields go here -->
+                <!-- Your form fields go here -->
+
+                <div class="table-container">
+                    <div class="table">
+                        <!-- {{profs | json}} -->
+                        <table class="table table-hover hover">
+                            <thead>
+                                <tr>
+                                    <th>name</th>
+                                    <th>
+                                        <button title="add" type="button" class="btn btn-primary fa fa-add"
+                                            (click)="chapterSelected={}" type="button" data-toggle="modal"
+                                            data-target="#chapterModal"></button>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <tr *ngFor="let p of edited.chapters" [class.valider]="!p.valider">
+
+                                    <td style="">
+                                        <p>{{p.label}}</p>
+
+                                    </td>
+
+                                    <td style="">
+
+                                        <button title="edit" type="button" class="btn btn-primary fa fa-pencil"
+                                            (click)="chapterSelected=p" type="button" data-toggle="modal"
+                                            data-target="#chapterModal"></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- Add more fields as needed -->
+                <!-- Add more fields as needed -->
+                <!-- Add more fields as needed -->
+                <!-- {{newItem | json}} -->
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <!-- <button type="button" class="btn btn-primary" (click)="saveCourse()">Save changes</button> -->
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="chapterModal" tabindex="-1" role="dialog" aria-labelledby="chapterModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog  modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Your form fields go here -->
+                <!-- Your form fields go here -->
+                <!-- Your form fields go here -->
+
+                <div class="table-container">
+                    <div class="table">
+                        <div class="container">
+                            <div class="row">
+                                <input type="text" name="label" [(ngModel)]="chapterSelected.label"
+                                    class="form-control">
+                                <textarea name="content" id="content" [(ngModel)]="chapterSelected.contenu" cols="30"
+                                    rows="10" class="form-control">
+                                </textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Add more fields as needed -->
+                <!-- Add more fields as needed -->
+                <!-- Add more fields as needed -->
+                <!-- {{newItem | json}} -->
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" (click)="saveChapter(chapterSelected)">Save
+                    changes</button>
+            </div>
+        </div>
+    </div>
+</div>

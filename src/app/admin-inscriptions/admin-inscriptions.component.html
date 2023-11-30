@@ -1,0 +1,49 @@
+<!-- <router-outlet></router-outlet> -->
+<!-- <app-sidenav (onToggleSideNav)="onToggleSideNav($event)"></app-sidenav> -->
+<app-sidebar></app-sidebar>
+
+<div class="body0" id="body0" style="margin-left: 6em;">
+
+    <div class="container">
+        <div class="sous-container">
+            <div class="search-container">
+                <div>
+                    <input type="text" name="" placeholder="Search" id="" class="form-control"
+                        [(ngModel)]="searchText" />
+                </div>
+            </div>
+            <div class="table-container">
+                <div class="table">
+                    <!-- {{profs | json}} -->
+                    <table class="table table-hover hover">
+                        <thead>
+                            <tr>
+                                <th>name</th>
+                                <th>email</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr *ngFor="let p of inscriptions" [class.valider]="!p.valider">
+                                <td>
+                                    <p>{{p.name}}</p>
+
+                                </td>
+                                <td>
+                                    <p *ngIf="!p.editMode">{{p.email}}</p>
+                                    <input *ngIf="p.editMode" type="text" name="" placeholder="name" value="{{p.email}}"
+                                        id="nametr" class="name">
+                                </td>
+                                <td> <button *ngIf="!p.valider" (click)="p.valider=!p.valider; update(p)"
+                                        class="btn btn-success" type="button" title="delete"><span
+                                            class="fa fa-check"></span></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
