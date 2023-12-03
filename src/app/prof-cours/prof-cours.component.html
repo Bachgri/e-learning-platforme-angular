@@ -2,9 +2,9 @@
 <!-- <app-sidenav (onToggleSideNav)="onToggleSideNav($event)"></app-sidenav> -->
 <app-sidebar></app-sidebar>
 
-<div class="body0" id="body0" style="margin-left: 6em;">
+<div class="body0" id="body0" style="margin-left: 6em; height: 100vh;">
 
-    <div class="container">
+    <div class="container" style="width: 100%;">
         <div class="sous-container">
             <div class="search-container">
                 <div class="btn-group form-control" role="group" aria-label="Search and Add Buttons">
@@ -28,9 +28,13 @@
                                 <th></th>
                             </tr>
                         </thead>
-                        <tbody>
 
-                            <tr *ngFor="let p of cours" [class.valider]="!p.valider">
+                        <tbody>
+                            <tr *ngFor="let p of getCourses | paginate: {
+                                    itemsPerPage: pageSize,
+                                    currentPage: page,
+                                    totalItems: count
+                                  }" [class.valider]="!p.valider">
                                 <td>
                                     <img src="{{p.image}}" height="87" width="200" alt="">
                                 </td>
@@ -52,11 +56,25 @@
                                         (click)="edited=p"></button>
                                 </td>
                             </tr>
+
                         </tbody>
+
                     </table>
+
                 </div>
             </div>
         </div>
+    </div>
+    <div class="d-flex pagination-controls">
+        <pagination-controls (pageChange)="page = $event">
+        </pagination-controls>
+        <select name="pages" title="pages" (change)="setItemsPerPage(page0.value)" #page0>
+            <option>2</option>
+            <option>5</option>
+            <option>15</option>
+            <option>20</option>
+            <option>25</option>
+        </select>
     </div>
 </div>
 

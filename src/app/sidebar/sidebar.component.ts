@@ -67,9 +67,9 @@ export class SidebarComponent implements OnInit {
     let role = sessionStorage.getItem('role') || localStorage.getItem('role');
     this.itemsService.loadNaves(role).subscribe((r) => {
       this.navData = r;
-      console.log('====================================');
+      console.log('== ==================================');
       console.log(r);
-      console.log('====================================');
+      console.log('== ==================================');
     });
   }
   @HostListener('window:resize', ['$event'])

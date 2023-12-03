@@ -16,14 +16,14 @@ export class InterceptorInterceptor implements HttpInterceptor {
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
-    console.log(this.service.accessToken);
+    //console.log(this.service.accessToken);
     if (
       request.url.includes('/Student') ||
       request.url.includes('/prof') ||
       request.url.includes('/admin') ||
       request.url.includes('/api')
     ) {
-      console.log(this.service.accessToken);
+      //console.log(this.service.accessToken);
 
       let newRequest = request.clone({
         headers: request.headers.set(
@@ -31,10 +31,10 @@ export class InterceptorInterceptor implements HttpInterceptor {
           'Bearer ' + this.service.accessToken
         ),
       });
-      console.log(newRequest);
+      //console.log(newRequest);
       return next.handle(newRequest);
     } else {
-      console.log(request);
+      //console.log(request);
       return next.handle(request);
     }
   }

@@ -1,0 +1,47 @@
+/* Add the following styles to your CSS file or style section */
+
+/* Set a max height for the table container to make it scrollable */
+.container {
+    max-height: 500px;
+    /* Adjust the value based on your design */
+    overflow-y: auto;
+}
+
+/* Style for pagination controls */
+.pagination-controls {
+    /* margin-top: 10px; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+}
+
+/* Adjust the table styles for better spacing */
+.table-container {
+    margin-top: 20px;
+    /* Adjust the value based on your design */
+}
+
+/* Ensure the table is always full width */
+.table {
+    width: 100%;
+}
+
+/* Optional: Add some padding to the table cells for better spacing */
+.table td,
+.table th {
+    padding: 8px;
+}
+
+/* Optional: Add a border to the table */
+.table {
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+}
+
+/* Optional: Style the pagination controls for better appearance */
+.pagination-controls select {
+    margin-left: 10px;
+    padding: 5px;
+}

@@ -88,6 +88,7 @@ export class LogComponent implements OnInit {
         if (res.role == 'Admin') {
           this.router.navigate(['/admin/dashboard']);
         } else if (res.role == 'Professor') {
+          sessionStorage.setItem('pid', res.id);
           this.router.navigate(['/prof/course']);
         } else {
           // this.service.accessToken = res;

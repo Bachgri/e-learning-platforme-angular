@@ -13,10 +13,12 @@ export class AdminProfServiceService {
   getAllCourse(): Observable<any[]> {
     return this.http.get<any>('http://localhost:85/Student/allCourses');
   }
+  getAllCourseByProf(id: any): Observable<any[]> {
+    return this.http.get<any>(`http://localhost:85/Student/allCourses/${id}`);
+  }
   getCourse(id: any): Observable<any[]> {
     return this.http.get<any>(`http://localhost:85/Student/course/${id}`);
   }
-
   add(e: any): Observable<any> {
     return this.http.post<any>('http://localhost:85/Authentification/prof', e);
   }

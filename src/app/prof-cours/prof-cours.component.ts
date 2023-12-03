@@ -11,18 +11,30 @@ export class ProfCoursComponent implements OnInit {
   searchText = '';
   newItem: any = {};
   edited: any = {};
+  profid: any = sessionStorage.getItem('pid');
   chapterSelected: any = {};
+  page = 1;
+  pageSize = 2;
+  count = 1;
+  handlePageChange(event: any) {
+    this.page = event;
+  }
   constructor(private service: AdminProfServiceService) {}
   ngOnInit(): void {
     this.loadAll();
+    this.count = this.cours.length / this.pageSize;
+  }
+  public setItemsPerPage(event: any) {
+    this.pageSize = event;
   }
   saveCourse() {
+    this.newItem.professor = { id: this.profid };
     this.service.saveCourse(this.newItem).subscribe((d) => {
       this.loadAll();
     });
   }
   loadAll() {
-    this.service.getAllCourse().subscribe((d) => {
+    this.service.getAllCourseByProf(this.profid).subscribe((d) => {
       this.cours = d;
       console.log('====================================');
       console.log(this.cours);
@@ -44,5 +56,10 @@ export class ProfCoursComponent implements OnInit {
   }
   loadSelected(edited: any) {
     this.service.getCourse(edited.id).subscribe((d) => (edited = d));
+  }
+  public get getCourses() {
+    return this.cours.filter((course: any) =>
+      course.name.toLowerCase().includes(this.searchText.toLowerCase())
+    );
   }
 }
