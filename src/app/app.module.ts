@@ -35,6 +35,8 @@ import { MyCoursesComponent } from './Etudiant/my-courses/my-courses.component';
 import { LogOutComponent } from './log-out/log-out.component';
 import { InterceptorInterceptor } from './interceptor.interceptor';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { ExamComponent } from './Etudiant/Course/exam/exam.component';
+import { CoursePageComponent } from './Etudiant/course-page/course-page.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +59,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     ProfDashboardComponent,
     ProfExamsComponent,
     LogOutComponent,
+    ExamComponent,
+    CoursePageComponent
   ],
   imports: [
     BrowserModule,

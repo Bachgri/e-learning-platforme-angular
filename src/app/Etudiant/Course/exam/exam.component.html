@@ -1,0 +1,31 @@
+<!-- qcm-exam.component.html -->
+
+<h1 class="mt-4 mb-3">QCM Exam</h1>
+
+<div class="container">
+    <!-- Display exam title and date -->
+    <h2>{{ result.title }} - {{ result.date | date }}</h2>
+
+    <!-- Iterate over questions -->
+    <div *ngFor="let question of result.questions" class="mb-3">
+        <!-- Display question label -->
+        <p>{{ question.label }}</p>
+
+        <!-- Display responses as radio buttons -->
+        <div *ngFor="let response of question.responses" class="form-check">
+            <input type="radio" name="question-{{ question.id }}"
+                value="{{ response.id }}"
+                [(ngModel)]="userAnswers[question.id]"
+                class="form-check-input"
+                required>
+            <label class="form-check-label">{{ response.label }}</label>
+        </div>
+
+        <!-- Add a line break between questions -->
+        <br>
+    </div>
+
+    <!-- Add a submit button with Bootstrap classes -->
+    <button (click)="handleSubmission()" class="btn btn-primary"
+        [disabled]="!allQuestionsAnswered()">Submit</button>
+</div>

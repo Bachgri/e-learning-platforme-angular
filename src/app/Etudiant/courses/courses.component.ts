@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ServService } from 'src/app/Services/serv.service';
 class Course {
   constructor(
@@ -15,7 +16,7 @@ class Course {
   styleUrls: ['./courses.component.css'],
 })
 export class CoursesComponent implements OnInit {
-  constructor(private service: ServService) {}
+  constructor(private service: ServService, private router:Router) {}
   result!: Course[];
   result1!: Course[];
   ngOnInit(): void {
@@ -38,6 +39,7 @@ export class CoursesComponent implements OnInit {
   getCourses() {
     this.service.getCourses().subscribe((res) => {
       this.courseList = res;
+      console.log(res)
       this.result1 = res;
       this.getStudentCourses();
     });
@@ -68,5 +70,9 @@ export class CoursesComponent implements OnInit {
         this.courseList = this.result1;
       });
     });
+  }
+
+  check(id:number){
+    this.router.navigateByUrl("/Etudiant/Course/"+id)
   }
 }

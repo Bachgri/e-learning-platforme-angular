@@ -1,7 +1,12 @@
 <div class="container pt-5">
     <div class="row">
-        <div class="col-12">
-            <button title="back" class="btn btn-primary bi bi-arrow-return-left" (click)="getBack()"></button>
+        <div class="col-6">
+            <button title="back" class="btn btn-primary bi bi-arrow-return-left"
+                (click)="getBack()"></button>
+        </div>
+        <div class="col-6 text-end">
+            <button class="btn btn-primary" [disabled]="!visible"
+                (click)="passExam()">PassExam</button>
         </div>
     </div>
 
@@ -20,15 +25,31 @@
         </div>
     </div>
 
-    <div class="row course-details pt-2">
-        <div class="col-12">
-            <!-- Attribute 4: Course Description -->
-            <div *ngFor="let chapter of course.chapters">
-                <h5 style="text-align: center;">{{chapter.label}}</h5>
+</div>
+<div class="container" style="background-color: rgb(161, 161, 161);">
+    <div id="carouselExampleControls" class="carousel slide"
+        data-ride="carousel">
+        <div class="carousel-inner"
+            style="height: 200px; ">
+            <!-- Use *ngFor to loop through all chapters and create carousel items -->
+            <div class="carousel-item p-3"
+                *ngFor="let chapter of course.chapters; let index = index"
+                [class.active]="index === 0">
+                <h5 style="text-align: center; padding-top: 15px;">{{index+"- "+chapter.label}}</h5>
                 <p>{{chapter.contenu}}</p>
-
             </div>
-
         </div>
+        <a class="carousel-control-prev" href="#carouselExampleControls"
+            role="button" data-slide="prev" style="color: black;">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only" style="color: black;">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleControls"
+            role="button" data-slide="next" style="color: black;">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+
     </div>
+
 </div>

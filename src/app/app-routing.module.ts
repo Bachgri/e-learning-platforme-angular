@@ -17,6 +17,7 @@ import { CoursePageComponent } from './Etudiant/course-page/course-page.componen
 import { HomeComponent } from './Etudiant/home/home.component';
 import { MyCoursesComponent } from './Etudiant/my-courses/my-courses.component';
 import { LogOutComponent } from './log-out/log-out.component';
+import { ExamComponent } from './Etudiant/Course/exam/exam.component';
 
 const routes: Routes = [
   { path: 'Login', component: LogComponent },
@@ -27,6 +28,7 @@ const routes: Routes = [
   { path: 'Etudiant/home', component: HomeComponent },
   { path: 'Etudiant/Course/:id', component: CoursePageComponent },
   { path: 'Etudiant/Courses', component: MyCoursesComponent },
+  { path: 'Etudiant/Course/:id/Exam', component : ExamComponent},
   { path: 'admin/inscriptions', component: AdminInscriptionsComponent },
   { path: 'admin/dashboard', component: AdminDashboardComponent },
   { path: 'admin/notes', component: AdminNotesComponent },

@@ -32,7 +32,7 @@ export class InterceptorInterceptor implements HttpInterceptor {
         ),
       });
       //console.log(newRequest);
-      return next.handle(newRequest);
+      return next.handle(request);
     } else {
       //console.log(request);
       return next.handle(request);

@@ -1,0 +1,11 @@
+.nowrap {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+  .stle{
+    cursor: pointer;
+  }
+  .height{
+    height: 150px;
+  }

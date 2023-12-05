@@ -94,4 +94,12 @@ export class ServService {
     console.log(this.studentName + this.roles + this.studentId);
     //console.log(this.username+" "+this.roles) chbalik
   }
+
+  getExam(id:number){
+    return this.Http.get("http://localhost:85/Student/studentExam/"+id)
+  }
+
+  setNote(idS:number, idC:number, note:number){
+    return this.Http.post("http://localhost:85/Student/studentNote/"+idS+"/"+idC+"/"+note,null);
+  }
 }

@@ -17,7 +17,9 @@ class Course {
   styleUrls: ['./course-page.component.css'],
 })
 export class CoursePageComponent implements OnInit {
-  course!: Course;
+  course: any[any] = [];
+  index !: number
+  visible : boolean = false
   constructor(
     private router: Router,
     private hear: ActivatedRoute,
@@ -27,7 +29,7 @@ export class CoursePageComponent implements OnInit {
     this.getCourseById();
   }
   getBack() {
-    this.router.navigateByUrl('/Etudiant/Courses');
+    this.router.navigateByUrl('/Etudiant/home');
   }
 
   getCourseById() {
@@ -35,7 +37,16 @@ export class CoursePageComponent implements OnInit {
     //console.log(id)
     this.service.getCourse(id).subscribe((res) => {
       this.course = res;
-      console.log(this.course.chapters);
+      if(this.course.exam != null){
+        this.visible = this.course.exam.visible
+      }
+      console.log(this.course.exam!=null)
+      console.log(this.course.exam.visible);
     });
+  }
+
+  passExam(){
+    this.router.navigateByUrl("/Etudiant/Course/"+this.course.id+"/Exam")
+    
   }
 }
